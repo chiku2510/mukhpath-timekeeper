@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mukhpath Timekeeper - A professional timer application for competition participants">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Mukhpath Timekeeper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="app-title">Mukhpath Timekeeper</h1>
+            <div class="header-controls">
+                <button id="settingsBtn" class="header-btn" aria-label="Open settings" title="Settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m3.08 3.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m3.08-3.08l4.24-4.24M19.78 19.78l-4.24-4.24m-3.08-3.08l-4.24-4.24"></path>
+                    </svg>
+                </button>
+                <button id="fullscreenBtn" class="header-btn" aria-label="Toggle fullscreen" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                    </svg>
+                </button>
+                <button id="darkModeBtn" class="header-btn" aria-label="Toggle dark mode" title="Dark Mode">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Timer Display -->
+        <main class="main-content">
+            <div class="timer-display" id="timerDisplay" role="status" aria-live="polite">
+                <div class="timer-main">
+                    <span class="timer-time" id="timerTime">00:00</span>
+                </div>
+                <div class="timer-info">
+                    <div class="info-box">
+                        <label class="info-label">Limit</label>
+                        <span class="info-value" id="limitDisplay">07:00</span>
+                    </div>
+                    <div class="info-box">
+                        <label class="info-label">Overtime</label>
+                        <span class="info-value" id="overtimeDisplay">+00:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="button-group">
+                <button id="startBtn" class="btn btn-primary" aria-label="Start timer">
+                    START
+                </button>
+                <button id="pauseBtn" class="btn btn-secondary" disabled aria-label="Pause timer">
+                    PAUSE
+                </button>
+                <button id="resumeBtn" class="btn btn-secondary" disabled aria-label="Resume timer">
+                    RESUME
+                </button>
+                <button id="resetBtn" class="btn btn-danger" aria-label="Reset timer">
+                    RESET
+                </button>
+                <button id="nextBtn" class="btn btn-success" aria-label="Next participant">
+                    NEXT
+                </button>
+            </div>
+
+            <!-- Participant Display -->
+            <div class="participant-info">
+                <p>Participant: <span id="participantCount">1</span></p>
+            </div>
+        </main>
+
+        <!-- Settings Panel -->
+        <aside id="settingsPanel" class="settings-panel hidden" role="complementary" aria-label="Settings panel">
+            <div class="settings-content">
+                <div class="settings-header">
+                    <h2>Settings</h2>
+                    <button id="closeSettingsBtn" class="close-btn" aria-label="Close settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="settings-scroll">
+                    <!-- Timer Settings -->
+                    <div class="settings-section">
+                        <h3>Timer Settings</h3>
+                        <div class="setting-item">
+                            <label for="warningTime">Warning Time (MM:SS)</label>
+                            <input type="text" id="warningTime" class="time-input" maxlength="5" placeholder="06:00" aria-label="Warning time">
+                        </div>
+                        <div class="setting-item">
+                            <label for="endTime">End Time (MM:SS)</label>
+                            <input type="text" id="endTime" class="time-input" maxlength="5" placeholder="07:00" aria-label="End time">
+                        </div>
+                    </div>
+
+                    <!-- Bell Settings -->
+                    <div class="settings-section">
+                        <h3>Bell Settings</h3>
+                        <div class="setting-item">
+                            <label for="warningBells">Warning Bells</label>
+                            <input type="number" id="warningBells" class="number-input" min="0" max="10" value="1" aria-label="Number of warning bells">
+                        </div>
+                        <div class="setting-item">
+                            <label for="endBells">End Bells</label>
+                            <input type="number" id="endBells" class="number-input" min="0" max="20" value="5" aria-label="Number of end bells">
+                        </div>
+                        <div class="setting-item">
+                            <label for="bellInterval">Bell Interval (ms)</label>
+                            <input type="number" id="bellInterval" class="number-input" min="100" max="2000" step="50" value="500" aria-label="Bell interval in milliseconds">
+                        </div>
+                        <div class="setting-item">
+                            <label for="bellVolume">Bell Volume</label>
+                            <div class="volume-control">
+                                <input type="range" id="bellVolume" class="slider" min="0" max="100" value="50" aria-label="Bell volume">
+                                <span class="volume-value" id="bellVolumeValue">50%</span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label for="customBellInput">Custom Bell Sound (MP3)</label>
+                            <input type="file" id="customBellInput" accept=".mp3,audio/mpeg" aria-label="Upload custom bell sound">
+                            <button id="clearCustomBell" class="btn btn-small">Clear Custom Bell</button>
+                            <p class="hint-text" id="customBellStatus"></p>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="settings-section">
+                        <h3>Features</h3>
+                        <div class="setting-item checkbox-item">
+                            <input type="checkbox" id="enableVibration" checked>
+                            <label for="enableVibration">Enable Vibration</label>
+                        </div>
+                        <div class="setting-item checkbox-item">
+                            <input type="checkbox" id="enableFlash" checked>
+                            <label for="enableFlash">Enable Flash Screen Effect</label>
+                        </div>
+                        <div class="setting-item checkbox-item">
+                            <input type="checkbox" id="enableWakeLock" checked>
+                            <label for="enableWakeLock">Prevent Screen Sleep</label>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="settings-section">
+                        <h3>Actions</h3>
+                        <button id="resetSettingsBtn" class="btn btn-secondary full-width">Reset to Defaults</button>
+                        <button id="exportSettingsBtn" class="btn btn-secondary full-width">Export Settings</button>
+                        <button id="importSettingsBtn" class="btn btn-secondary full-width">Import Settings</button>
+                        <input type="file" id="importSettingsInput" accept=".json" style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Flash Effect (Hidden) -->
+        <div id="flashEffect" class="flash-effect"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
