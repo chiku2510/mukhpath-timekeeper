@@ -125,12 +125,13 @@ const elements = {
 // ============================================
 
 /**
- * Convert seconds to MM:SS format
+ * Convert seconds to MM:SS.ms format (with milliseconds)
  */
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
-    return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    const ms = Math.floor((seconds % 1) * 1000);
+    return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${String(ms).padStart(3, '0')}`;
 }
 
 /**

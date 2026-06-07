@@ -222,12 +222,13 @@ textarea {
 }
 
 .timer-time {
-    font-size: clamp(48px, 15vw, 120px);
+    font-size: clamp(40px, 12vw, 100px);
     font-weight: 700;
     font-family: 'Courier New', monospace;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     color: var(--text-primary);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    word-break: break-word;
 }
 
 .timer-info {
