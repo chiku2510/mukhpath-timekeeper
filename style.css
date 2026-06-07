@@ -117,6 +117,7 @@ textarea {
     padding: 0 var(--spacing-md);
     flex-shrink: 0;
     z-index: 100;
+    gap: var(--spacing-sm);
 }
 
 .app-title {
@@ -124,7 +125,12 @@ textarea {
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: 0.5px;
-}
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}xs);
+    flex-shrink: 0
 
 .header-controls {
     display: flex;
@@ -144,6 +150,7 @@ textarea {
     transition: color var(--transition-fast), background-color var(--transition-fast);
     border-radius: 8px;
     padding: 0;
+    flex-shrink: 0;
 }
 
 .header-btn:hover {
@@ -169,10 +176,11 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: var(--spacing-lg) var(--spacing-md);
+    justify-content: flex-start;
+    padding: var(--spacing-md) var(--spacing-sm);
     overflow-y: auto;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-md);
 }
 
 /* ============================================
@@ -181,12 +189,13 @@ textarea {
 
 .timer-display {
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    flex-shrink: 0;
 }
 
 .timer-main {
@@ -199,6 +208,7 @@ textarea {
     border-radius: 20px;
     border: 3px solid var(--border-color);
     transition: background-color var(--transition-normal), border-color var(--transition-normal);
+    flex-grow: 1;
 }
 
 .timer-main.warning {
@@ -222,7 +232,7 @@ textarea {
 }
 
 .timer-time {
-    font-size: clamp(40px, 12vw, 100px);
+    font-size: clamp(36px, 20vw, 100px);
     font-weight: 700;
     font-family: 'Courier New', monospace;
     letter-spacing: 1px;
@@ -235,7 +245,7 @@ textarea {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .info-box {
@@ -245,6 +255,10 @@ textarea {
     padding: var(--spacing-md);
     text-align: center;
     transition: background-color var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .info-label {
@@ -280,6 +294,10 @@ textarea {
     touch-action: manipulation;
     user-select: none;
     letter-spacing: 0.5px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn:disabled {
@@ -359,7 +377,9 @@ textarea {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-md);
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
+    flex-shrink: 0;
+    padding-bottom: var(--spacing-md);
 }
 
 @media (min-width: 600px) {
@@ -388,6 +408,8 @@ textarea {
     color: var(--text-secondary);
     margin-top: auto;
     padding-top: var(--spacing-md);
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .participant-info p {
@@ -711,7 +733,7 @@ textarea {
     }
     
     .timer-time {
-        font-size: clamp(40px, 12vw, 100px);
+        font-size: clamp(40px, 14vw, 100px);
         letter-spacing: 2px;
     }
     
@@ -735,69 +757,79 @@ textarea {
     }
     
     .header {
-        height: 56px;
+        height: 50px;
         padding: 0 var(--spacing-sm);
     }
     
     .app-title {
-        font-size: 16px;
+        font-size: 14px;
     }
     
     .header-btn {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
     }
     
     .main-content {
-        padding: var(--spacing-md) var(--spacing-sm);
-        gap: var(--spacing-md);
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
     }
     
     .timer-display {
-        gap: var(--spacing-md);
-        margin-bottom: var(--spacing-md);
+        gap: var(--spacing-xs);
+        margin-bottom: 0;
     }
     
     .timer-main {
         border-radius: 12px;
         border-width: 2px;
+        min-height: 220px;
     }
     
     .timer-time {
-        font-size: clamp(32px, 10vw, 80px);
-        letter-spacing: 2px;
+        font-size: clamp(32px, 18vw, 80px);
+        letter-spacing: 1px;
     }
     
     .timer-info {
-        gap: var(--spacing-sm);
+        gap: var(--spacing-xs);
+        width: 100%;
     }
     
     .info-box {
-        padding: var(--spacing-md);
+        padding: 8px 12px;
         border-radius: 8px;
+        border: 2px solid var(--border-color);
     }
     
     .info-label {
-        font-size: 12px;
+        font-size: 11px;
     }
     
     .info-value {
-        font-size: 20px;
+        font-size: 16px;
     }
     
     .button-group {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-sm);
+        padding-bottom: var(--spacing-sm);
     }
     
     .button-group .btn {
-        padding: 10px 12px;
-        font-size: 13px;
+        padding: 10px 8px;
+        font-size: 12px;
         letter-spacing: 0;
     }
     
     .participant-info {
-        font-size: 13px;
+        font-size: 12px;
+        padding-top: var(--spacing-sm);
+        margin-top: auto;
+    }
+    
+    #participantCount {
+        font-size: 16px;
     }
     
     .settings-panel {
@@ -820,7 +852,7 @@ textarea {
 /* Landscape Mode (Mobile) */
 @media (max-height: 600px) and (orientation: landscape) {
     .header {
-        height: 50px;
+        height: 45px;
     }
     
     .main-content {
@@ -829,35 +861,50 @@ textarea {
     }
     
     .timer-display {
-        gap: var(--spacing-sm);
+        gap: 4px;
         margin-bottom: 0;
     }
     
     .timer-main {
         aspect-ratio: auto;
-        height: 120px;
+        min-height: 140px;
+        border-radius: 10px;
     }
     
     .timer-time {
-        font-size: 48px;
+        font-size: 36px;
     }
     
     .timer-info {
-        gap: var(--spacing-sm);
+        gap: 6px;
+    }
+    
+    .info-box {
+        padding: 6px 8px;
+    }
+    
+    .info-label {
+        font-size: 10px;
+    }
+    
+    .info-value {
+        font-size: 14px;
     }
     
     .button-group {
-        gap: var(--spacing-sm);
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
     }
     
     .button-group .btn {
-        padding: 8px 10px;
-        font-size: 12px;
+        padding: 6px 4px;
+        font-size: 11px;
     }
     
     .participant-info {
         padding-top: 0;
         margin-top: 0;
+        font-size: 11px;
     }
 }
 
